@@ -13,21 +13,19 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("New Zealand Salary"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
+        sidebarPanel(numericInput(inputId = "salary", label = "Annual Salary", value = 60000), 
+                     selectInput(inputId = "kiwisaver", label = "Kiwi Saver Rate", 
+                                 choices = c(3, 4, 6, 9, 10), selected = 3, multiple = FALSE)
+                    ),
 
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("distPlot")
+            textOutput("net"), textOutput("weekly")
+            
         )
     )
 ))
